@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('backend.dashboard.index');
+
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('admin.login');
+Route::post('login', 'Auth\LoginController@login')->name('admin.login.post');
+Route::post('logout', 'Auth\LoginController@logout')->name('admin.logout');
+//Admin Home page after login
+Route::group(['middleware'=>'admin'], function() {
+
+    Route::get('/', 'DashboardController@index')->name('dashboard');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

@@ -185,11 +185,12 @@
     <!-- /.container -->
   </footer>
 
-  <script src="{{ asset('js/app.js') }}" defer></script>
-
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
   <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
+
+  <script src="{{ asset('js/app.js') }}" defer></script>
+
 
 </body>
 

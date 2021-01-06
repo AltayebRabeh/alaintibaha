@@ -42,6 +42,16 @@ class RegisterController extends Controller
     }
 
     /**
+     * Override show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        return view('backend.auth.register');
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
