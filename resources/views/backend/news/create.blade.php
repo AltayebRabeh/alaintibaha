@@ -17,21 +17,27 @@
                         <div class="form-group">
                             <label for="title">عنوان الخبر</label>
                             <input id="title" name="title" type="text" class="form-control">
-                            <span class="form-text text-danger">We'll never share your email with anyone else.</span>
+                            @error('title')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="photos">إختيار الصور</label>
-                            <input id="photos" name="photos" type="text" class="form-control">
-                            <span class="form-text text-danger">We'll never share your email with anyone else.</span>
+                            <input id="photos" name="photos" type="file" class="form-control">
+                            @error('photos')
+                                <span class="form-text text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="subject">الخبر</label>
-                    <input id="subject" name="subject" type="text" class="form-control">
-                    <span class="form-text text-danger">We'll never share your email with anyone else.</span>
+                    <textarea id="subject" name="subject" type="text" class="form-control"> </textarea>
+                    @error('subject')
+                        <span class="form-text text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 <input type="submit" class="btn btn-primary" value="حفظ">
             </form>
@@ -43,16 +49,8 @@
 @section('js')
     <script src="{{ asset('backend/js/ckeditor/ckeditor.js') }}"></script>
     <script>
-        ClassicEditor
-            .create( document.querySelector( '#subject' ), {
-                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
-            } )
-            .then( editor => {
-                window.editor = editor;
-                window.CKEDITOR_TRANSLATIONS = ar;
-            } )
-            .catch( err => {
-                console.error( err.stack );
-            } );
+        // CKEDITOR.config.extraPlugins = 'embed';
+        CKEDITOR.config.language = 'ar';
+        CKEDITOR.replace('subject');
     </script>
 @endsection

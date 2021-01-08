@@ -25,9 +25,9 @@
                     @if($news)
                         @forelse($news as $key => $value)
                             <tr>
-                                <td>{{ $key+1 }}</td>
+                                <td>{{ $value->id }}</td>
                                 <td>{{ $value->title }}</td>
-                                <td>{{ $value->created_At }}</td>
+                                <td>{{ $value->created_at }}</td>
                                 <td>{{ $value->admin->name }}</td>
                                 <td>
                                     <a href="{{ route('admin.news.edit', $value->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-pen fa-sm text-white-50"></i> تعديل</a>
@@ -42,11 +42,8 @@
                         @endforelse
                     @endif
                 </tbody>
-                <tfoot>
-                    {{ $news->links() }}
-                </tfoot>
             </table>
+            {{ $news->links() }}
         </div>
     </div>
-
 @endsection

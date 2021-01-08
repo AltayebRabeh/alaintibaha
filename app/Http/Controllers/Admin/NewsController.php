@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Auth;
 use App\Models\News;
 use Illuminate\Http\Request;
+use App\Http\Requests\NewsRequest;
 use App\Http\Controllers\Controller;
-use Auth;
 
 class NewsController extends Controller
 {
@@ -36,14 +37,18 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
+        $path = $request->file('photos')->store('news');
+
         News::create([
             'title' => $request->title,
-            'photos' => $request->photos,
+            'photos' => $path,
             'subject' => $request->subject,
             'admin_id' => Auth::guard('admin')->user()->id,
         ]);
+
+        return redirect()->route('admin.news')->with(['message' => 'تم الحفظ بنجاح', 'msg-type' => 'success']);
     }
 
     /**
@@ -65,7 +70,12 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $news = News::find($id);
+        if (! $news) {
+            return redirect()->route('admin.news')->with(['message' => 'هنالك مشكلة ماء الرجاء المحاولة مرة اخرة', 'msg-type' => 'danger']);
+        }
+
+        return view('backend.news.edit', compact('news'));
     }
 
     /**
@@ -88,6 +98,12 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $news = News::find($id);
+        if (! $news) {
+            return redirect()->route('admin.news')->with(['message' => 'هنالك مشكلة ماء الرجاء المحاولة مرة اخرة', 'msg-type' => 'danger']);
+        }
+
+        $news->delete();
+        return redirect()->route('admin.news')->with(['message' => 'تم الحذف بنجاح', 'msg-type' => 'success']);
     }
 }

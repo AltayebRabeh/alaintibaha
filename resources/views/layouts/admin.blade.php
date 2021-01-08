@@ -306,7 +306,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::guard('admin')->user()->name }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{ asset('backend/img/undraw_profile.svg') }}">
                             </a>
@@ -315,12 +315,12 @@
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    الملف الشخصي
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    تسجيل خروج
                                 </a>
 
                             </div>
@@ -333,7 +333,14 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                    @if(Session::has('message'))
+                        <div id="message" class="alert alert-{{ Session::get('msg-type') }} text-right alert-dismissible fade show" role="alert">
+                            {{ Session::get('message') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                    @endif
                     @yield('content')
 
                 </div>
@@ -431,10 +438,10 @@
 
     <script>
         $(function() {
-            $("#delete-btn").on('click', function () {
-                console.log('altayeb');
+            $("body").on('click', '#delete-btn', function () {
                $("#delete-form").attr('action', $(this).data('delete'));
             });
+            $("#message").fadeOut(6000);
         });
     </script>
     
