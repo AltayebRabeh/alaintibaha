@@ -37,4 +37,5 @@ Route::group(['middleware'=>'admin'], function() {
 
 
 define('PAGINATE_COUNT', 10);
+define('MAX_COUNT_FILE_UPLOAD', 5);
 

@@ -25,7 +25,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="photos">إختيار الصور</label>
-                            <input id="photos" name="photos" type="file" class="form-control">
+                            <input id="photos" name="photos[]" multiple type="file" class="form-control">
                             @error('photos')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror

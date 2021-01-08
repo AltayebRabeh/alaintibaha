@@ -10,7 +10,7 @@
     <!-- Content Row -->
     <div class="row">
         <div class="col-md-12">
-            <form class="text-right" action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="text-right" action="{{ route('admin.news.update', $news->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
@@ -25,7 +25,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="photos">إختيار الصور</label>
-                            <input id="photos" name="photos" type="file" class="form-control">
+                            <input id="photos" name="photos[]" multiple type="file" class="form-control">
                             @error('photos')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror

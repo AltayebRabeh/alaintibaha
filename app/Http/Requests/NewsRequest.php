@@ -26,7 +26,7 @@ class NewsRequest extends FormRequest
         return [
             'title' => 'required|min:10|max:255',
             'subject' => 'required|min:100',
-            'photos' => 'required_without:photos|mimes:jpg,png,jpeg',
+            'photos.*' => 'required_without:photos|image|mimes:jpg,png,jpeg|max:3072',
         ];
     }
 
@@ -37,7 +37,6 @@ class NewsRequest extends FormRequest
             'min' => 'هذا الحقل يجب ان لايقل عن :min .',
             'max' => 'هذا الحقل يجب ان لايزيد عن :max .',
             'mimes' => 'يتم قبول الانواع التالية (.jpg, jpeg, png) فقط',
-            'size' => 'يجب الايزيد حجم الصورة عن ( 3 MB )',
         ];
     }
 }

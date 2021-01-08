@@ -39,11 +39,22 @@ class NewsController extends Controller
      */
     public function store(NewsRequest $request)
     {
-        $path = $request->file('photos')->store('news');
+        // $path = $request->file('photos')->store('news');
+        if($request->hasfile('photos'))
+        {
+           foreach($request->file('photos') as $file)
+           {
+               $name = time().'.'.$file->extension();
+               $file->move(storage_path().'/news/', $name);  
+               $data[] = $name;  
+           }
+           if(count($data) > MAX_COUNT_FILE_UPLOAD)
+                return redirect()->route('admin.news.create')->with(['message' => 'لايمكنك رفع اكثر من ' . MAX_COUNT_FILE_UPLOAD . 'صور', 'msg-type' => 'danger']);
+        }
 
         News::create([
             'title' => $request->title,
-            'photos' => $path,
+            'photos' => json_encode($data),
             'subject' => $request->subject,
             'admin_id' => Auth::guard('admin')->user()->id,
         ]);
@@ -59,7 +70,12 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        $news = News::find($id);
+        if (! $news) {
+            return redirect()->route('admin.news')->with(['message' => 'هنالك مشكلة ماء الرجاء المحاولة مرة اخرة', 'msg-type' => 'danger']);
+        }
+
+        return view('backend.news.show', compact('news'));
     }
 
     /**
@@ -87,7 +103,32 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $news = News::find($id);
+        if (! $news) {
+            return redirect()->route('admin.news')->with(['message' => 'هنالك مشكلة ماء الرجاء المحاولة مرة اخرة', 'msg-type' => 'danger']);
+        }
+
+        if($request->hasfile('photos'))
+        {
+            foreach($request->file('photos') as $file)
+            {
+                $name = time().'.'.$file->extension();
+                $file->move(storage_path().'/news/', $name);  
+                $data[] = $name;  
+            }
+
+            if(count($data) > MAX_COUNT_FILE_UPLOAD)
+                return redirect()->route('admin.news')->with(['message' => 'لايمكنك رفع اكثر من ' . MAX_COUNT_FILE_UPLOAD . 'صور', 'msg-type' => 'danger']);
+
+            $news->photos = json_encode($data);
+        }
+
+        $news->title = $request->title;
+        $news->subject = $request->subject;
+        $news->admin_id = Auth::guard('admin')->user()->id;
+        $news->save();
+
+        return redirect()->route('admin.news')->with(['message' => 'تم التعديل بنجاح', 'msg-type' => 'success']);
     }
 
     /**
