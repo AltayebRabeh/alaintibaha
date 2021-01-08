@@ -6,7 +6,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
-                {{ route('admin.login') }}
                 <div class="card-body">
                     <form method="POST" action="{{ route('admin.login.post') }}">
                         @csrf
