@@ -40,8 +40,12 @@ class NewsController extends Controller
     public function store(NewsRequest $request)
     {
         // $path = $request->file('photos')->store('news');
-        if($request->hasfile('photos') && count($request->file('photos')) <= MAX_COUNT_FILE_UPLOAD)
+        if($request->hasfile('photos'))
         {
+            if(count($request->file('photos')) > MAX_COUNT_FILE_UPLOAD) {
+                return redirect()->route('admin.news')->with(['message' => 'لايمكنك رفع اكثر من ' . MAX_COUNT_FILE_UPLOAD . 'صور', 'msg-type' => 'danger']);
+            }
+            
            foreach($request->file('photos') as $photo)
            {        
                $filePath = uploadImage('news', $photo);
@@ -49,8 +53,6 @@ class NewsController extends Controller
            }
            if(count($data) > MAX_COUNT_FILE_UPLOAD)
                 return redirect()->route('admin.news.create')->with(['message' => 'لايمكنك رفع اكثر من ' . MAX_COUNT_FILE_UPLOAD . 'صور', 'msg-type' => 'danger']);
-        } else {
-            return redirect()->route('admin.news')->with(['message' => 'لايمكنك رفع اكثر من ' . MAX_COUNT_FILE_UPLOAD . 'صور', 'msg-type' => 'danger']);
         }
 
 
@@ -104,15 +106,19 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(NewsRequest $request, $id)
     {
         $news = News::find($id);
         if (! $news) {
             return redirect()->route('admin.news')->with(['message' => 'هنالك مشكلة ماء الرجاء المحاولة مرة اخرة', 'msg-type' => 'danger']);
         }
 
-        if($request->hasfile('photos') && count($request->file('photos')) <= MAX_COUNT_FILE_UPLOAD)
+        if($request->hasfile('photos'))
         {
+            if(count($request->file('photos')) > MAX_COUNT_FILE_UPLOAD) {
+                return redirect()->route('admin.news')->with(['message' => 'لايمكنك رفع اكثر من ' . MAX_COUNT_FILE_UPLOAD . 'صور', 'msg-type' => 'danger']);
+            }
+
            foreach($request->file('photos') as $photo)
            {        
                $filePath = uploadImage('news', $photo);
@@ -120,8 +126,6 @@ class NewsController extends Controller
            }
 
             $news->photos = json_encode($data);
-        } else {
-            return redirect()->route('admin.news')->with(['message' => 'لايمكنك رفع اكثر من ' . MAX_COUNT_FILE_UPLOAD . 'صور', 'msg-type' => 'danger']);
         }
 
         $news->title = $request->title;

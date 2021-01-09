@@ -112,15 +112,41 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-fw fa-paper"></i>
                     <span>الاخبار</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('admin.news') }}">عرض الاخبار</a>
                         <a class="collapse-item" href="{{ route('admin.news.create') }}">إضافة خبر</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-paper"></i>
+                    <span>التعليقات</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('admin.comments') }}">عرض التعليقات</a>
+                        <a class="collapse-item" href="{{ route('admin.comments.disiable') }}">التعليقات المخفية</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="true" aria-controls="collapseThree">
+                    <i class="fas fa-fw fa-paper"></i>
+                    <span>الاعلانات</span>
+                </a>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('admin.ads') }}">عرض الاعلانات</a>
+                        <a class="collapse-item" href="{{ route('admin.ads.create') }}">إضافة إعلان</a>
                     </div>
                 </div>
             </li>
@@ -398,7 +424,7 @@
         </div>
     </div>
 
-        <!-- Delete Modal-->
+    <!-- Delete Modal-->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -425,6 +451,33 @@
             </div>
         </div>
     </div>
+    <!-- Hide Modal-->
+    <div class="modal fade" id="hideModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">تاكيد</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body text-right">هل انت متاكد من إتمام العملية .</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">إلغاء</button>
+                    <a class="btn btn-primary" href="#"
+                        onclick="event.preventDefault();
+                                        document.getElementById('hide-form').submit();">
+                        موافق
+                    </a>
+
+                    <form id="hide-form" action="" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('backend/js/jquery.min.js') }}"></script>
@@ -441,10 +494,13 @@
             $("body").on('click', '#delete-btn', function () {
                $("#delete-form").attr('action', $(this).data('delete'));
             });
+            $("body").on('click', '#hide-btn', function () {
+               $("#hide-form").attr('action', $(this).data('hide'));
+            });
             $("#message").fadeOut(6000);
         });
     </script>
-    
+
     @yield('js')
 
 </body>

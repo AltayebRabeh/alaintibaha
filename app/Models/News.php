@@ -15,4 +15,8 @@ class News extends Model
     public function admin() {
         return $this->belongsTo(Admin::class);
     }
+
+    public function comment() {
+        return $this->hasMany(Comment::class);
+    }
 }

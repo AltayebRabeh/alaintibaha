@@ -31,6 +31,22 @@ Route::group(['middleware'=>'admin'], function() {
     Route::post('/news/update/{id}', 'NewsController@update')->name('admin.news.update');
     Route::post('/news/delete/{id}', 'NewsController@destroy')->name('admin.news.delete');
 
+
+    Route::get('/comments', 'CommentsController@index')->name('admin.comments');
+    Route::get('/comments/disiable', 'CommentsController@disiable')->name('admin.comments.disiable');
+    Route::get('/comments/show/{id}', 'CommentsController@show')->name('admin.comments.show');
+    Route::post('/comments/show-hide/{id}', 'CommentsController@showOrHide')->name('admin.comments.show_hide');
+    Route::post('/comments/delete/{id}', 'CommentsController@destroy')->name('admin.comments.delete');
+
+
+    Route::get('/ads', 'AdsController@index')->name('admin.ads');
+    Route::get('/ads/create', 'AdsController@create')->name('admin.ads.create');
+    Route::post('/ads/store', 'AdsController@store')->name('admin.ads.store');
+    Route::get('/ads/show/{id}', 'AdsController@show')->name('admin.ads.show');
+    Route::get('/ads/edit/{id}', 'AdsController@edit')->name('admin.ads.edit');
+    Route::post('/ads/update/{id}', 'AdsController@update')->name('admin.ads.update');
+    Route::post('/ads/delete/{id}', 'AdsController@destroy')->name('admin.ads.delete');
+
     Route::post('logout', 'Auth\LoginController@logout')->name('admin.logout');
 
 });

@@ -17,6 +17,7 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->text('comment');
             $table->text('photos');
+            $table->tinyInteger('status')->default(1);
             $table->foreignId('new_id')->references('id')->on('news')->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
