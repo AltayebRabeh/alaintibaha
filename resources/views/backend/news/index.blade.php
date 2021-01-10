@@ -32,6 +32,9 @@
                                 <td>
                                     <a href="{{ route('admin.news.edit', $value->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-pen fa-sm text-white-50"></i> تعديل</a>
                                     <a href="{{ route('admin.news.show', $value->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fas fa-info-circle fa-sm text-white-50"></i> عرض</a>
+                                    @if(! isset($value->breakingNews->id))
+                                        <a href="#" id="hide-btn" data-hide="{{ route('admin.breaking_news.add', $value->id) }}" data-toggle="modal" data-target="#hideModal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-trash fa-sm text-white-50"></i> اضافة للعاجلة</a>
+                                    @endif
                                     <a href="#" id="delete-btn" data-delete="{{ route('admin.news.delete', $value->id) }}" data-toggle="modal" data-target="#deleteModal" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-trash fa-sm text-white-50"></i> حذف</a>
                                 </td>
                             </tr>

@@ -5,7 +5,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800" style="float:right">التعليقات المخفية</h1>
-        <a href="{{ route('admin.news.create') }}" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> إضافة خبر</a>
     </div>
 
        <!-- Content Row -->
@@ -21,7 +20,7 @@
                         <th>العمليات</th>
                     </tr>
                 </thead>
-                <tbody>   
+                <tbody>
                     @if($comments)
                         @forelse($comments as $key => $value)
                             <tr>

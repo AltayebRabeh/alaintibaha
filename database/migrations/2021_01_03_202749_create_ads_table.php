@@ -18,6 +18,7 @@ class CreateAdsTable extends Migration
             $table->string('title');
             $table->text('subject');
             $table->text('photos');
+            $table->tinyInteger('status')->default(1);
             $table->foreignId('admin_id')->references('id')->on('admins')->onDelete('cascade');
             $table->timestamps();
         });

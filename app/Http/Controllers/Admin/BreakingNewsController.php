@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Auth;
 use App\Http\Controllers\Controller;
 use App\Models\BreakingNew;
 use Illuminate\Http\Request;
@@ -19,25 +20,14 @@ class BreakingNewsController extends Controller
         return view('backend.breaking_news.index', compact('breaking_news'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public static function add($id)
     {
-        //
-    }
+        BreakingNew::create([
+            'new_id' => $id,
+            'admin_id' => Auth::guard('admin')->user()->id,
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return redirect()->back();
     }
 
     /**
@@ -46,14 +36,14 @@ class BreakingNewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public static function destroy($id)
     {
         $breaking_news = BreakingNew::find($id);
         if (! $breaking_news) {
-            return redirect()->route('admin.news')->with(['message' => 'هنالك مشكلة ماء الرجاء المحاولة مرة اخرة', 'msg-type' => 'danger']);
+            return redirect()->route('admin.breaking_news')->with(['message' => 'هنالك مشكلة ماء الرجاء المحاولة مرة اخرة', 'msg-type' => 'danger']);
         }
 
         $breaking_news->delete();
-        return redirect()->route('admin.news')->with(['message' => 'تم الحذف بنجاح', 'msg-type' => 'success']);
+        return redirect()->route('admin.breaking_news')->with(['message' => 'تم الحذف بنجاح', 'msg-type' => 'success']);
     }
 }

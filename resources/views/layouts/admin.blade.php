@@ -111,15 +111,9 @@
             </div> --}}
 
             <!-- Nav Item - Pages Collapse Menu -->
-<<<<<<< HEAD
-            <li class="nav-item active">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-=======
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                     aria-expanded="true" aria-controls="collapseOne">
->>>>>>> 8b7377ed014879e91e418f6e7da1899898743bed
                     <i class="fas fa-fw fa-paper"></i>
                     <span>الاخبار</span>
                 </a>
@@ -153,6 +147,7 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('admin.ads') }}">عرض الاعلانات</a>
+                        <a class="collapse-item" href="{{ route('admin.ads.enable') }}">عرض الاعلانات المفعلة</a>
                         <a class="collapse-item" href="{{ route('admin.ads.create') }}">إضافة إعلان</a>
                     </div>
                 </div>

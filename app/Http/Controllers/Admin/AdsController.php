@@ -20,6 +20,12 @@ class AdsController extends Controller
         return view('backend.ads.index', compact('ads'));
     }
 
+    public function enable()
+    {
+        $ads = Ad::where('status', 1)->select()->paginate(PAGINATE_COUNT);
+        return view('backend.ads.enable', compact('ads'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -45,15 +51,11 @@ class AdsController extends Controller
             }
 
            foreach($request->file('photos') as $photo)
-           {        
+           {
                $filePath = uploadImage('ads', $photo);
                $data[] = $filePath;
            }
-           if(count($data) > MAX_COUNT_FILE_UPLOAD)
-                return redirect()->route('admin.ads.create')->with(['message' => 'لايمكنك رفع اكثر من ' . MAX_COUNT_FILE_UPLOAD . 'صور', 'msg-type' => 'danger']);
         }
-
-
 
         Ad::create([
             'title' => $request->title,
@@ -118,7 +120,7 @@ class AdsController extends Controller
             }
 
            foreach($request->file('photos') as $photo)
-           {        
+           {
                $filePath = uploadImage('ads', $photo);
                $data[] = $filePath;
            }
@@ -132,6 +134,23 @@ class AdsController extends Controller
         $ads->save();
 
         return redirect()->route('admin.ads')->with(['message' => 'تم التعديل بنجاح', 'msg-type' => 'success']);
+    }
+
+    public function showOrHide($id)
+    {
+        $ads = Ad::find($id);
+
+        if (! $ads) {
+            return redirect()->route('admin.ads')->with(['message' => 'هنالك مشكلة ماء الرجاء المحاولة مرة اخرة', 'msg-type' => 'danger']);
+        }
+
+        if ($ads->status == 0)
+            $ads->status = 1;
+        else
+            $ads->status = 0;
+
+        $ads->update();
+        return redirect()->back()->with(['message' => 'تمت العملية بنجاح', 'msg-type' => 'success']);
     }
 
     /**

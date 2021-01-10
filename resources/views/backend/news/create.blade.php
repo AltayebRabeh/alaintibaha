@@ -13,6 +13,12 @@
             <form class="text-right" action="{{ route('admin.news.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input id="breaking_news" name="breaking_news" type="checkbox">
+                            <label for="breaking_news">إضافة للاخبار العاجلة</label>
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="title">عنوان الخبر</label>

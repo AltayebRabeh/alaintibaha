@@ -43,26 +43,26 @@ class NewsController extends Controller
         if($request->hasfile('photos'))
         {
             if(count($request->file('photos')) > MAX_COUNT_FILE_UPLOAD) {
-                return redirect()->route('admin.news')->with(['message' => 'لايمكنك رفع اكثر من ' . MAX_COUNT_FILE_UPLOAD . 'صور', 'msg-type' => 'danger']);
+                return redirect()->route('admin.news.create')->with(['message' => 'لايمكنك رفع اكثر من ' . MAX_COUNT_FILE_UPLOAD . 'صور', 'msg-type' => 'danger']);
             }
-            
+
            foreach($request->file('photos') as $photo)
            {
                $filePath = uploadImage('news', $photo);
                $data[] = $filePath;
            }
-           if(count($data) > MAX_COUNT_FILE_UPLOAD)
-                return redirect()->route('admin.news.create')->with(['message' => 'لايمكنك رفع اكثر من ' . MAX_COUNT_FILE_UPLOAD . 'صور', 'msg-type' => 'danger']);
         }
 
-
-
-        News::create([
+        $news_id = News::insertGetId([
             'title' => $request->title,
             'photos' => json_encode($data),
             'subject' => $request->subject,
             'admin_id' => Auth::guard('admin')->user()->id,
         ]);
+
+        if ($request->has('breaking_news')) {
+            BreakingNewsController::add($news_id);
+        }
 
         return redirect()->route('admin.news')->with(['message' => 'تم الحفظ بنجاح', 'msg-type' => 'success']);
     }
@@ -92,6 +92,7 @@ class NewsController extends Controller
     public function edit($id)
     {
         $news = News::find($id);
+
         if (! $news) {
             return redirect()->route('admin.news')->with(['message' => 'هنالك مشكلة ماء الرجاء المحاولة مرة اخرة', 'msg-type' => 'danger']);
         }
@@ -132,6 +133,16 @@ class NewsController extends Controller
         $news->subject = $request->subject;
         $news->admin_id = Auth::guard('admin')->user()->id;
         $news->save();
+
+        if ($request->has('breaking_news')) {
+            if(! isset($news->breakingNews->new_id)) {
+                BreakingNewsController::add($news->id);
+            }
+        } else {
+            if(isset($news->breakingNews->new_id)) {
+                BreakingNewsController::destroy($news->id);
+            }
+        }
 
         return redirect()->route('admin.news')->with(['message' => 'تم التعديل بنجاح', 'msg-type' => 'success']);
     }
