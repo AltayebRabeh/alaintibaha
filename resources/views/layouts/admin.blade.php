@@ -152,6 +152,47 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
+                    aria-expanded="true" aria-controls="collapseFour">
+                    <i class="fas fa-fw fa-paper"></i>
+                    <span>الاعلانات</span>
+                </a>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('admin.ads') }}">عرض الاعلانات</a>
+                        <a class="collapse-item" href="{{ route('admin.ads.enable') }}">عرض الاعلانات المفعلة</a>
+                        <a class="collapse-item" href="{{ route('admin.ads.create') }}">إضافة إعلان</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
+                    aria-expanded="true" aria-controls="collapseFive">
+                    <i class="fas fa-fw fa-paper"></i>
+                    <span>المدراء</span>
+                </a>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('admin.admins') }}">عرض الكل</a>
+                        <a class="collapse-item" href="{{ route('admin.admins.disiable') }}">عرض المحظورين</a>
+                        <a class="collapse-item" href="{{ route('admin.admins.create') }}">إضافة مدير</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSex"
+                    aria-expanded="true" aria-controls="collapseSex">
+                    <i class="fas fa-fw fa-paper"></i>
+                    <span>المستخدمين</span>
+                </a>
+                <div id="collapseSex" class="collapse" aria-labelledby="headingSex" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('admin.users') }}">عرض الكل</a>
+                        <a class="collapse-item" href="{{ route('admin.users.disiable') }}">عرض المحظورين </a>
+                    </div>
+                </div>
+            </li>
 
         </ul>
         <!-- End of Sidebar -->

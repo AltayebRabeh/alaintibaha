@@ -41,7 +41,7 @@ class CommentsController extends Controller
         $comments = Comment::find($id);
 
         if (! $comments) {
-            return redirect()->route('admin.comments')->with(['message' => 'هنالك مشكلة ماء الرجاء المحاولة مرة اخرة', 'msg-type' => 'danger']);
+            return redirect()->back()->with(['message' => 'هنالك مشكلة ماء الرجاء المحاولة مرة اخرة', 'msg-type' => 'danger']);
         }
 
         if ($comments->status == 0)

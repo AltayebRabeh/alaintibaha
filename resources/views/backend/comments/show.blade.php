@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="row">
-        <div class="card col-md-12" style="width: 18rem;">
+        <div class="card col-md-12">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     @foreach (json_decode($comments->news->photos) as $key => $photo)

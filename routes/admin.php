@@ -55,13 +55,24 @@ Route::group(['middleware'=>'admin'], function() {
     Route::post('/comments/delete/{id}', 'CommentsController@destroy')->name('admin.comments.delete');
 
 
-    Route::get('/admins', 'AdminsController@index')->name('admin.admins');
+    Route::get('/{profile}', 'ProfileController@show')->name('admin.profile');
+    Route::get('/profile/edit', 'ProfileController@edit')->name('admin.profile.edit');
+    Route::post('/profile/update', 'ProfileController@update')->name('admin.profile.update');
+
+
+    Route::get('/admins/all', 'AdminsController@index')->name('admin.admins');
+    Route::get('/admins/disiable', 'AdminsController@disiable')->name('admin.admins.disiable');
     Route::get('/admins/create', 'AdminsController@create')->name('admin.admins.create');
-    Route::post('/admins/store', 'AdminsController@store')->name('admin.admins.store');
     Route::get('/admins/show/{id}', 'AdminsController@show')->name('admin.admins.show');
+    Route::post('/admins/store', 'AdminsController@store')->name('admin.admins.store');
     Route::get('/admins/edit/{id}', 'AdminsController@edit')->name('admin.admins.edit');
     Route::post('/admins/update/{id}', 'AdminsController@update')->name('admin.admins.update');
-    Route::post('/admins/delete/{id}', 'AdminsController@destroy')->name('admin.admins.delete');
+    Route::post('/admins/status/{id}', 'AdminsController@status')->name('admin.admins.status');
+
+
+    Route::get('/users/all', 'UsersController@index')->name('admin.users');
+    Route::get('/users/disiable', 'UsersController@disiable')->name('admin.users.disiable');
+    Route::post('/users/status/{id}', 'UsersController@status')->name('admin.users.status');
 
 
     Route::post('logout', 'Auth\LoginController@logout')->name('admin.logout');

@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Admin;
-use Illuminate\Database\Seeder;
+use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Database\Seeder;
 
-class AdminSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,13 +13,12 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        Admin::create([
-            'name' => "admin",
-            'email' => "admin@admin.com",
+        User::create([
+            'name' => "test",
+            'email' => "test@test.com",
             'photo' => '',
-            'permission' => '*',
             'email_verified_at' => now(),
-            'password' => bcrypt('admin123'), // password
+            'password' => bcrypt('test123'), // password
             'remember_token' => Str::random(10),
         ]);
     }

@@ -22,4 +22,7 @@ class News extends Model
     public function comment() {
         return $this->hasMany(Comment::class);
     }
+    public function like() {
+        return $this->hasMany(Like::class);
+    }
 }

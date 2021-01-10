@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Auth;
+use App\Models\Like;
 use App\Models\News;
 use Illuminate\Http\Request;
 use App\Http\Requests\NewsRequest;
@@ -80,7 +81,10 @@ class NewsController extends Controller
             return redirect()->route('admin.news')->with(['message' => 'هنالك مشكلة ماء الرجاء المحاولة مرة اخرة', 'msg-type' => 'danger']);
         }
 
-        return view('backend.news.show', compact('news'));
+        $like = Like::where('status', 1)->count();
+        $dislike = Like::where('status', '!=', 1)->count();
+
+        return view('backend.news.show', compact('news', 'like', 'dislike'));
     }
 
     /**
