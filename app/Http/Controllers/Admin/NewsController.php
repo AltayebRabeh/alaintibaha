@@ -43,7 +43,7 @@ class NewsController extends Controller
         if($request->hasfile('photos') && count($request->file('photos')) <= MAX_COUNT_FILE_UPLOAD)
         {
            foreach($request->file('photos') as $photo)
-           {        
+           {
                $filePath = uploadImage('news', $photo);
                $data[] = $filePath;
            }
@@ -114,7 +114,7 @@ class NewsController extends Controller
         if($request->hasfile('photos') && count($request->file('photos')) <= MAX_COUNT_FILE_UPLOAD)
         {
            foreach($request->file('photos') as $photo)
-           {        
+           {
                $filePath = uploadImage('news', $photo);
                $data[] = $filePath;
            }

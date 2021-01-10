@@ -111,7 +111,7 @@
             </div> --}}
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-paper"></i>
@@ -121,6 +121,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('admin.news') }}">عرض الاخبار</a>
                         <a class="collapse-item" href="{{ route('admin.news.create') }}">إضافة خبر</a>
+                        <a class="collapse-item" href="{{ route('admin.breaking_news') }}">عرض الاخبار العاجلة</a>
                     </div>
                 </div>
             </li>
@@ -444,7 +445,7 @@
             $("#message").fadeOut(6000);
         });
     </script>
-    
+
     @yield('js')
 
 </body>

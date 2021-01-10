@@ -40,4 +40,7 @@ class Admin extends Authenticatable
     public function news() {
         return $this->hasMany(News::class);
     }
+    public function breakingNews() {
+        return $this->hasMany(BreakingNew::class);
+    }
 }

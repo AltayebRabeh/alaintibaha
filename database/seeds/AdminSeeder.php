@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Admin;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class AdminSeeder extends Seeder
 {
@@ -11,6 +13,12 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Admin::create([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('admin123'),
+            'remember_token' => Str::random(10),
+        ]);
     }
 }

@@ -31,6 +31,21 @@ Route::group(['middleware'=>'admin'], function() {
     Route::post('/news/update/{id}', 'NewsController@update')->name('admin.news.update');
     Route::post('/news/delete/{id}', 'NewsController@destroy')->name('admin.news.delete');
 
+
+    Route::get('/breaking_news', 'BreakingNewsController@index')->name('admin.breaking_news');
+    Route::post('/breaking_news/store', 'BreakingNewsController@store')->name('admin.breaking_news.store');
+    Route::post('/breaking_news/delete/{id}', 'BreakingNewsController@destroy')->name('admin.breaking_news.delete');
+
+
+
+    Route::get('/admins', 'AdminsController@index')->name('admin.admins');
+    Route::get('/admins/create', 'AdminsController@create')->name('admin.admins.create');
+    Route::post('/admins/store', 'AdminsController@store')->name('admin.admins.store');
+    Route::get('/admins/show/{id}', 'AdminsController@show')->name('admin.admins.show');
+    Route::get('/admins/edit/{id}', 'AdminsController@edit')->name('admin.admins.edit');
+    Route::post('/admins/update/{id}', 'AdminsController@update')->name('admin.admins.update');
+    Route::post('/admins/delete/{id}', 'AdminsController@destroy')->name('admin.admins.delete');
+
     Route::post('logout', 'Auth\LoginController@logout')->name('admin.logout');
 
 });

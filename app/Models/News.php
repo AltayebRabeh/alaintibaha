@@ -15,4 +15,8 @@ class News extends Model
     public function admin() {
         return $this->belongsTo(Admin::class);
     }
+
+    public function breakingNews() {
+        return $this->hasOne(BreakingNew::class, 'new_id');
+    }
 }
