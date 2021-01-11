@@ -64,7 +64,8 @@ class AdminsController extends Controller
      */
     public function show($id)
     {
-        //
+        $admin = Admin::find($id);
+        return view('backend.admins.show', compact('admin'));
     }
 
     /**
@@ -75,7 +76,9 @@ class AdminsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $admin = Admin::find($id);
+        dd($admin->permission);
+        return view('backend.admins.edit', compact('admin'));
     }
 
     /**
@@ -85,7 +88,7 @@ class AdminsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminRequest $request, $id)
     {
         //
     }
@@ -102,7 +105,7 @@ class AdminsController extends Controller
             $admin->status = 1;
         else
             $admin->status = 0;
-            
+
         $admin->update();
         return redirect()->back()->with(['message' => 'تمت العملية بنجاح', 'msg-type' => 'success']);
     }

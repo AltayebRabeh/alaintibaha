@@ -10,56 +10,38 @@
     <!-- Content Row -->
     <div class="row">
         <div class="col-md-12">
-            <form class="text-right" action="{{ route('admin.admins.store') }}" method="POST">
+            <form class="text-right" action="{{ route('admin.admins.update', $admin->id) }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input id="status" name="status" type="checkbox" checked>
-                            <label for="status">مفعل</label>
+                            <img style="width:100px; height:100px; margin:auto" class="d-block img-profile rounded-circle" src="{{ isset($admin->photo) ?  url($admin->photo)  : asset('backend/img/undraw_profile.svg') }}"
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="h4">الاسم</label>
+                            <label class="d-block">{{ $admin->name }}</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="name">الاسم </label>
-                            <input id="name" name="name" type="text" class="form-control">
-                            @error('name')
-                                <span class="form-text text-danger">{{ $message }}</span>
-                            @enderror
+                            <label class="h4">البريد الالكتروني</label>
+                            <label class="d-block">{{ $admin->email }}</label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="email">البريد الالكتروني </label>
-                            <input id="email" name="email" type="email" class="form-control">
-                            @error('email')
-                                <span class="form-text text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="password">كلمة المرور </label>
-                            <input id="password" name="password" type="password" class="form-control">
-                            @error('password')
-                                <span class="form-text text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="password-confirm">إعادة كلمة المرور </label>
-                            <input id="password-confirm" name="password_confirmation" type="password" class="form-control">
-                            @error('password-confirm')
-                                <span class="form-text text-danger">{{ $message }}</span>
-                            @enderror
+                            <label class="h4">الحالة</label>
+                            <label class="d-block">{{ $admin->status == 0 ? 'غير مفعل' : 'مفعل' }}</label>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="confirm_password">الصلاحيات </label>
+                            <label for="per">الصلاحيات </label>
                             <select name="permission[]" class="form-control" multiple>
-                                <option value="/"></option>
+                                <option {{ $admin->permission ? '' : '' }} value="/"></option>
                                 <option value="/news/create"></option>
                                 <option value="/news/edit/"></option>
                                 <option value="/news/delete/"></option>

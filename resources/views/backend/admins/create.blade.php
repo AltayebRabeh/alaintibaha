@@ -57,7 +57,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="confirm_password">الصلاحيات </label>
+                            <label for="per">الصلاحيات </label>
                             <select name="permission[]" class="form-control" multiple>
                                 <option value="/"></option>
                                 <option value="/news/create"></option>
