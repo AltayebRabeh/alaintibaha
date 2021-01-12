@@ -34,6 +34,12 @@
             width: 100%;
             bottom: 0
         }
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Almarai&family=Cairo:wght@200;300;400;600;700;900&display=swap');
+    * {
+        font-family: 'Almarai', sans-serif;
+        font-family: 'Cairo', sans-serif;
+    }
   </style>
 
   @yield('css')
@@ -53,20 +59,17 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">اخر الاخبار
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">الاكثر مشاهدة</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">تواصل معنا</a>
+            </li>
         </ul>
         <!-- Right Side Of Navbar -->
         <ul class="navbar-nav">

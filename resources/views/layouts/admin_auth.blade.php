@@ -19,6 +19,13 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-rtl.min.css') }}" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Almarai&family=Cairo:wght@200;300;400;600;700;900&display=swap');
+        * {
+            font-family: 'Almarai', sans-serif;
+            font-family: 'Cairo', sans-serif;
+        }
+    </style>
 </head>
 <body>
     <div id="app">

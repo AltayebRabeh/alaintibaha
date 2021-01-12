@@ -17,7 +17,7 @@ class BreakingNewsController extends Controller
     public function index()
     {
         $breaking_news = BreakingNew::select()->paginate(PAGINATE_COUNT);
-        return view('backend.poll.index', compact('breaking_news'));
+        return view('backend.breaking_news.index', compact('breaking_news'));
     }
 
     public static function add($id)

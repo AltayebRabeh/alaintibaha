@@ -17,8 +17,8 @@ class PollController extends Controller
      */
     public function index()
     {
-        $poll = Poll::select()->paginate(PAGINATE_COUNT);
-        return view('backend.poll.index', compact('poll'));
+        $polls = Poll::select()->paginate(PAGINATE_COUNT);
+        return view('backend.poll.index', compact('polls'));
     }
 
     /**
@@ -48,7 +48,7 @@ class PollController extends Controller
         for ($i = 0; $i < count($request->title); $i++) {
             $details_list[$i]['title'] = $request->title[$i];
         }
-        
+
         $details = $poll->details()->createMany($details_list);
 
         return redirect()->route('admin.poll')->with(['message' => 'تم الحفظ بنجاح', 'msg-type' => 'success']);

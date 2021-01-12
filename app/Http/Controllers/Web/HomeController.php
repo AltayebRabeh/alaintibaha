@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\BreakingNew;
+use App\Models\News;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,8 @@ class HomeController extends Controller
     public function index()
     {
         $breaking_news = BreakingNew::select()->paginate(PAGINATE_COUNT);
-;        
-        return view('frontend.home', compact('breaking_news'));
+        $news = News::select()->paginate(PAGINATE_COUNT);
+
+        return view('frontend.home', compact('news' ,'breaking_news'));
     }
 }

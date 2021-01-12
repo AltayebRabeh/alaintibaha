@@ -21,6 +21,11 @@
   <link href="{{ asset('frontend/css/blog-home.css') }}" rel="stylesheet">
 
   <style>
+        @import url('https://fonts.googleapis.com/css2?family=Almarai&family=Cairo:wght@200;300;400;600;700;900&display=swap');
+        * {
+            font-family: 'Almarai', sans-serif !important;
+            font-family: 'Cairo', sans-serif;
+        }
         @media (max-width: 767px) {
             .nav-item {
                 margin-right: 20px;
@@ -36,7 +41,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="{{ url('/') }}">
-        {{ config('app.name', 'Laravel') }}
+        <img src="{{asset('images/logo.jpg') }}" style="height: 58px;">
     </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -91,8 +96,8 @@
     </div>
   </nav>
   <marquee style="background-color: #343a4026;height: 35px;font-size: 20px;color: #343a40;">
-      @foreach ($breaking_news as $news) 
-        {{$news->news->title}} 
+      @foreach ($breaking_news as $news)
+        {{$news->news->title}}
       @endforeach
   </marquee>
 
@@ -114,12 +119,12 @@
 
         <!-- Search Widget -->
         <div class="card my-4">
-          <h5 class="card-header">Search</h5>
+          <h5 class="card-header">البحث</h5>
           <div class="card-body">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
+              <input type="text" class="form-control" placeholder="ابحث عن ...">
               <span class="input-group-append">
-                <button class="btn btn-secondary" type="button">Go!</button>
+                <button class="btn btn-secondary" type="button">بحث!</button>
               </span>
             </div>
           </div>
@@ -127,7 +132,7 @@
 
         <!-- Categories Widget -->
         <div class="card my-4">
-          <h5 class="card-header">Categories</h5>
+          <h5 class="card-header">اهم الاخبار</h5>
           <div class="card-body">
             <div class="row">
               <div class="col-lg-6">
