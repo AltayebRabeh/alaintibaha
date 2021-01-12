@@ -21,6 +21,12 @@ class PollController extends Controller
         return view('backend.poll.index', compact('polls'));
     }
 
+    public function enable()
+    {
+        $polls = Poll::select()->paginate(PAGINATE_COUNT);
+        return view('backend.poll.create', compact('polls'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

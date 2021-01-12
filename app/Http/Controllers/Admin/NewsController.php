@@ -54,15 +54,16 @@ class NewsController extends Controller
            }
         }
 
-        $news_id = News::insertGetId([
+        $news_id = News::create([
             'title' => $request->title,
             'photos' => json_encode($data),
             'subject' => $request->subject,
             'admin_id' => Auth::guard('admin')->user()->id,
         ]);
 
+
         if ($request->has('breaking_news')) {
-            BreakingNewsController::add($news_id);
+            BreakingNewsController::add($news_id->id);
         }
 
         return redirect()->route('admin.news')->with(['message' => 'تم الحفظ بنجاح', 'msg-type' => 'success']);

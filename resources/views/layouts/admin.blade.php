@@ -14,7 +14,8 @@
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('backend/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('css/bootstrap-rtl.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/slider.css') }}" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Almarai&family=Cairo:wght@200;300;400;600;700;900&display=swap');
         * {
@@ -531,6 +532,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{ asset('backend/js/sb-admin-2.min.js') }}"></script>
+    <script src="{{ asset('js/slider.js') }}"></script>
 
     <script>
         $(function() {

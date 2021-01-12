@@ -87,7 +87,14 @@
                                 <option value="/admins/status/">تفعيل و إلغاء تفعيل المدراء</option>
                                 <option value="/users/all">عرض المستخدمين</option>
                                 <option value="/users/disiable">عرض المستخدمين المحظورين</option>
-                                <option value="/users/status/">حظر مستخدم</option>
+                                <option value="/users/status/">حظر او فك حظر مستخدم</option>
+                                <option value="/poll/all">عرض الاستطلاعات</option>
+                                <option value="/poll/enable">عرض الاستطلاعات المفعلة</option>
+                                <option value="/poll/create">إضافة إستطلاع</option>
+                                <option value="/poll/show/">عرض إستطلاع</option>
+                                <option value="/poll/edit/">تعديل إستطلاع</option>
+                                <option value="/poll/delete/">حذف إستطلاع</option>
+                                <option value="/poll/show-hide/">تفعيل إلغاء او إلغاء تفعيل استطلاع</option>
                             </select>
                             @error('confirm_password')
                                 <span class="form-text text-danger">{{ $message }}</span>

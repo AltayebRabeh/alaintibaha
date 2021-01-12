@@ -75,7 +75,7 @@ Route::group(['middleware'=>'admin'], function() {
     Route::post('/users/status/{id}', 'UsersController@status')->name('admin.users.status')->middleware('cap');
 
 
-    Route::get('/poll', 'PollController@index')->name('admin.poll')->middleware('cap');
+    Route::get('/poll/all', 'PollController@index')->name('admin.poll')->middleware('cap');
     Route::get('/poll/enable', 'PollController@enable')->name('admin.poll.enable')->middleware('cap');
     Route::get('/poll/create', 'PollController@create')->name('admin.poll.create')->middleware('cap');
     Route::post('/poll/store', 'PollController@store')->name('admin.poll.store');

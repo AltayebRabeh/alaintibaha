@@ -4,39 +4,36 @@
 
     <div class="row">
         <div class="card col-md-12" style="">
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
+            <div class="slider-container">
+                @foreach (json_decode($news->photos) as $key => $photo)
+                    <div class="mySlides">
+                        <img src="{{ url($photo ) }}" style="height:300px; max-width:100%" class="d-block ml-auto">
+                    </div>
+                @endforeach
+
+                <a class="prev" onclick="plusSlides(-1)">❮</a>
+                <a class="next" onclick="plusSlides(1)">❯</a>
+
+                
+                {{-- <div class="row">
                     @foreach (json_decode($news->photos) as $key => $photo)
-                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}" class=" @if($key == 0) active @endif"></li>
-                    @endforeach
-                </ol>
-                <div class="carousel-inner" style="height:300px">
-                    @foreach (json_decode($news->photos) as $key => $photo)
-                        <div class="carousel-item @if($key == 0) active @endif" data-interval="10000">
-                            <img src="{{ url($photo ) }}" class="d-block w-20" style="height:300px" alt="...">
+                        <div class="column">
+                            <img class="demo cursor" src="{{ url($photo ) }}" style="width:100%" onclick="currentSlide({{ $key+1 }})" alt="">
                         </div>
                     @endforeach
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">السابق</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">التالي</span>
-                </a>
+                </div> --}}
             </div>
             <div class="card-body text-right">
                 <h5 class="card-title">{{ $news->title }}</h5>
                 <p class="card-text">{!! $news->subject !!}</p>
                 <div class="text-center" style="color:#4e73df">
-                    <div class="like ml-1" style="float: left;width: 40px;height: 40px;">
-                        <i class="fas fa-car fa-2x d-block"></i>
+                    <div class="like ml-4" style="float: left;width: 40px;height: 40px;">
+                        <i class="fas fa-thumbs-up fa-2x d-block"></i>
                         <span>{{ $like }}</span>
                     </div>
                     <div class="dislike" style="float: left;width: 40px;height: 40px;">
-                        <i class="fas fa-car fa-2x d-block"></i>
-                        <span>{{ $like }}</span>
+                        <i class="fas fa-thumbs-down fa-2x d-block"></i>
+                        <span>{{ $dislike }}</span>
                     </div>
                 </div>
             </div>

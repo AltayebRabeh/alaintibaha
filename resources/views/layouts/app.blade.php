@@ -15,7 +15,8 @@
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/bootstrap-rtl.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/slider.css') }}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="{{ asset('frontend/css/blog-home.css') }}" rel="stylesheet">
@@ -95,7 +96,7 @@
       </div>
     </div>
   </nav>
-  <marquee style="background-color: #343a4026;height: 35px;font-size: 20px;color: #343a40;">
+  <marquee style="background-color: #343a4026;height: 35px;font-size: 20px;color: #343a40;margin-top: 27px;">
       @foreach ($breaking_news as $news)
         {{$news->news->title}}
       @endforeach
@@ -193,6 +194,7 @@
   <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
   <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
 
+  <script src="{{ asset('js/slider.js') }}" defer></script>
   <script src="{{ asset('js/app.js') }}" defer></script>
 
 

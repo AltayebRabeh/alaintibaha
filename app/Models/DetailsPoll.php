@@ -13,4 +13,8 @@ class DetailsPoll extends Model
     public function pull() {
         return $this->belongsTo(Poll::class);
     }
+
+    public function vote() {
+        return $this->hasMany(Vote::class);
+    }
 }
