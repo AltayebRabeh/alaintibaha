@@ -20,6 +20,9 @@ class RedirectIfNotAdmin
         if(!auth()->guard($guard)->check()) {
             return redirect(route('admin.login'));
         }
+        // if (Auth::guard('admin')->user()->status == 0) {
+
+        // }
         return $next($request);
     }
 }

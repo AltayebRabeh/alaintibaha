@@ -156,13 +156,13 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
                     aria-expanded="true" aria-controls="collapseFour">
                     <i class="fas fa-fw fa-paper"></i>
-                    <span>الاعلانات</span>
+                    <span>الاستطلاعات</span>
                 </a>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('admin.ads') }}">عرض الاعلانات</a>
-                        <a class="collapse-item" href="{{ route('admin.ads.enable') }}">عرض الاعلانات المفعلة</a>
-                        <a class="collapse-item" href="{{ route('admin.ads.create') }}">إضافة إعلان</a>
+                        <a class="collapse-item" href="{{ route('admin.poll') }}">عرض الاستطلاعات</a>
+                        <a class="collapse-item" href="{{ route('admin.poll.enable') }}">عرض الاستطلاعات المفعلة</a>
+                        <a class="collapse-item" href="{{ route('admin.poll.create') }}">إضافة إستطلاع</a>
                     </div>
                 </div>
             </li>
@@ -402,9 +402,9 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    @if(Session::has('message'))
-                        <div id="message" class="alert alert-{{ Session::get('msg-type') }} text-right alert-dismissible fade show" role="alert">
-                            {{ Session::get('message') }}
+                    @if(session('message'))
+                        <div id="message" class="alert alert-{{ Session('msg-type') }} text-right alert-dismissible fade show" role="alert">
+                            {{ session('message') }}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>

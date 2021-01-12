@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetailsPoll extends Model
 {
-    //
+    protected $guarded;
+
+    public $timestamps = true;
+
+    public function pull() {
+        return $this->belongsTo(Poll::class);
+    }
 }

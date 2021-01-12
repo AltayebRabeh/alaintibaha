@@ -30,9 +30,13 @@
                                 <td>{{ $value->email }}</td>
                                 <td>{{ $value->created_at }}</td>
                                 <td>
-                                    <a href="{{ route('admin.admins.edit', $value->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-pen fa-sm text-white-50"></i> تعديل</a>
-                                    <a href="{{ route('admin.admins.show', $value->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fas fa-info-circle fa-sm text-white-50"></i> عرض</a>
-                                    <a href="#" id="hide-btn" data-hide="{{ route('admin.admins.status', $value->id) }}" data-toggle="modal" data-target="#hideModal" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa- fa-sm text-white-50"></i> {{ $value->status == 0 ?  'إلغاء الحظر' : 'حظر' }}</a>
+                                    @if($value->permission == '*')
+                                        <a href="{{ route('admin.admins.show', $value->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fas fa-info-circle fa-sm text-white-50"></i> عرض</a>
+                                    @else
+                                        <a href="{{ route('admin.admins.edit', $value->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i class="fas fa-pen fa-sm text-white-50"></i> تعديل</a>
+                                        <a href="{{ route('admin.admins.show', $value->id) }}" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="fas fa-info-circle fa-sm text-white-50"></i> عرض</a>
+                                        <a href="#" id="hide-btn" data-hide="{{ route('admin.admins.status', $value->id) }}" data-toggle="modal" data-target="#hideModal" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa- fa-sm text-white-50"></i> {{ $value->status == 0 ?  'إلغاء الحظر' : 'حظر' }}</a>
+                                    @endif
                                 </td>
                             </tr>
                         @empty

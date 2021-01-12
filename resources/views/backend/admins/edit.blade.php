@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <img style="width:100px; height:100px; margin:auto" class="d-block img-profile rounded-circle" src="{{ isset($admin->photo) ?  url($admin->photo)  : asset('backend/img/undraw_profile.svg') }}"
+                            <img style="width:100px; height:100px; margin:auto" class="d-block img-profile rounded-circle" src="{{ isset($admin->photo) ?  url($admin->photo)  : asset('backend/img/undraw_profile.svg') }}">
                         </div>
                     </div>
                     <br><br>
@@ -37,46 +37,51 @@
                             <label class="d-block">{{ $admin->status == 0 ? 'غير مفعل' : 'مفعل' }}</label>
                         </div>
                     </div>
+                    @if (! $superUser)
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="per">الصلاحيات </label>
                             <select name="permission[]" class="form-control" multiple>
-                                <option {{ $admin->permission ? '' : '' }} value="/"></option>
-                                <option value="/news/create"></option>
-                                <option value="/news/edit/"></option>
-                                <option value="/news/delete/"></option>
-                                <option value="/breaking_news"></option>
-                                <option value="/breaking_news/add/"></option>
-                                <option value="/breaking_news/delete/"></option>
-                                <option value="/ads"></option>
-                                <option value="/ads/enable"></option>
-                                <option value="/ads/create"></option>
-                                <option value="/ads/show/"></option>
-                                <option value="/ads/edit/"></option>
-                                <option value="/ads/delete/"></option>
-                                <option value="/ads/show-hide/"></option>
-                                <option value="/comments"></option>
-                                <option value="/comments/disiable"></option>
-                                <option value="/comments/show/"></option>
-                                <option value="/comments/show-hide/"></option>
-                                <option value="/comments/delete/"></option>
-                                <option value="/admins/all"></option>
-                                <option value="/admins/disiable"></option>
-                                <option value="/admins/create"></option>
-                                <option value="/admins/show/"></option>
-                                <option value="/admins/edit/"></option>
-                                <option value="/admins/status/"></option>
-                                <option value="/users/all"></option>
-                                <option value="/users/disiable"></option>
-                                <option value="/users/status/"></option>
+                                <option {{ array_search('/news', $admin->permission) ? 'selected' : '' }} value="/news">عرض الاخبار</option>
+                                <option {{ array_search('/news/create', $admin->permission) ? 'selected' : '' }} value="/news/create">إضافة خبر</option>
+                                <option {{ array_search('/news/create', $admin->permission) ? 'selected' : '' }} value="/news/show/">عرض تفاصيل الخبر</option>
+                                <option {{ array_search('/news/edit/', $admin->permission) ? 'selected' : '' }}  value="/news/edit/">تعديل خبر</option>
+                                <option {{ array_search('/news/delete/', $admin->permission) ? 'selected' : '' }}  value="/news/delete/">حذف خبر</option>
+                                <option {{ array_search('/breaking_news', $admin->permission) ? 'selected' : '' }}  value="/breaking_news">عرض الاخبار العاجلة</option>
+                                <option {{ array_search('/breaking_news/add/', $admin->permission) ? 'selected' : '' }}  value="/breaking_news/add/">إضافة خبر عاجل</option>
+                                <option {{ array_search('/breaking_news/delete/', $admin->permission) ? 'selected' : '' }}  value="/breaking_news/delete/">حذف خبر عاجل</option>
+                                <option {{ array_search('/ads', $admin->permission) ? 'selected' : '' }}  value="/ads">عرض الاعلانات</option>
+                                <option {{ array_search('/ads/enable', $admin->permission) ? 'selected' : '' }}  value="/ads/enable">عرض الاعلانات المفعلة</option>
+                                <option {{ array_search('/ads/create', $admin->permission) ? 'selected' : '' }}  value="/ads/create">إضافة إعلان</option>
+                                <option {{ array_search('/ads/show/', $admin->permission) ? 'selected' : '' }}  value="/ads/show/">عرض تفاصيل الاعلان </option>
+                                <option {{ array_search('/ads/edit/', $admin->permission) ? 'selected' : '' }}  value="/ads/edit/">تعديل إعلان</option>
+                                <option {{ array_search('/ads/delete/"', $admin->permission) ? 'selected' : '' }}  value="/ads/delete/">حذف إعلان</option>
+                                <option {{ array_search('/ads/show-hide/', $admin->permission) ? 'selected' : '' }}  value="/ads/show-hide/">تفعيل و إلغاء تفعيل الاعلانات</option>
+                                <option {{ array_search('/comments', $admin->permission) ? 'selected' : '' }}  value="/comments">عرض التعليقات</option>
+                                <option {{ array_search('/comments/disiable', $admin->permission) ? 'selected' : '' }}  value="/comments/disiable">عرض التعليقات المحظورة</option>
+                                <option {{ array_search('/comments/show/', $admin->permission) ? 'selected' : '' }}  value="/comments/show/">عرض تفاصيل التعليق</option>
+                                <option {{ array_search('/comments/show-hide/', $admin->permission) ? 'selected' : '' }}  value="/comments/show-hide/">حظر و فك حظر التعليقات</option>
+                                <option {{ array_search('/comments/delete/', $admin->permission) ? 'selected' : '' }}  value="/comments/delete/">حذف التعليقات</option>
+                                <option {{ array_search('/admins/all', $admin->permission) ? 'selected' : '' }}  value="/admins/all">عرض المدراء</option>
+                                <option {{ array_search('/admins/disiable', $admin->permission) ? 'selected' : '' }}  value="/admins/disiable">عرض المدراء غير المفعلين</option>
+                                <option {{ array_search('/admins/create', $admin->permission) ? 'selected' : '' }}  value="/admins/create">إضافة مدير</option>
+                                <option {{ array_search('/admins/show/', $admin->permission) ? 'selected' : '' }}  value="/admins/show/">عرض تفاصيل المدير</option>
+                                <option {{ array_search('/admins/edit/', $admin->permission) ? 'selected' : '' }}  value="/admins/edit/">تعديل المدراء</option>
+                                <option {{ array_search('/admins/status/', $admin->permission) ? 'selected' : '' }}  value="/admins/status/">تفعيل و إلغاء تفعيل المدراء</option>
+                                <option {{ array_search('/users/all', $admin->permission) ? 'selected' : '' }}  value="/users/all">عرض المستخدمين</option>
+                                <option {{ array_search('/users/disiable', $admin->permission) ? 'selected' : '' }}  value="/users/disiable">عرض المستخدمين المحظورين</option>
+                                <option {{ array_search('/users/status', $admin->permission) ? 'selected' : '' }}  value="/users/status">حظر مستخدم</option>
                             </select>
                             @error('confirm_password')
                                 <span class="form-text text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
+                    @endif
                 </div>
+                @if (! $superUser)
                 <input type="submit" class="btn btn-primary" value="حفظ">
+                @endif
             </form>
         </div>
     </div>

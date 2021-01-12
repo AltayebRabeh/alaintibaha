@@ -44,18 +44,15 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="#">اخر الاخبار
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="#">الاكثر مشاهدة</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="#">تواصل معنا</a>
           </li>
         </ul>
         <!-- Right Side Of Navbar -->
@@ -93,6 +90,11 @@
       </div>
     </div>
   </nav>
+  <marquee style="background-color: #343a4026;height: 35px;font-size: 20px;color: #343a40;">
+      @foreach ($breaking_news as $news) 
+        {{$news->news->title}} 
+      @endforeach
+  </marquee>
 
   <!-- Page Content -->
   <div class="container">
@@ -102,9 +104,6 @@
       <!-- Blog Entries Column -->
       <div class="col-md-8">
 
-        <h1 class="my-4">Page Heading
-          <small>Secondary Text</small>
-        </h1>
 
         @yield('content')
 

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Http\Requests\AdminRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+
 
 class AdminsController extends Controller
 {
@@ -44,14 +46,17 @@ class AdminsController extends Controller
      */
     public function store(AdminRequest $request)
     {
-        Admin::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'photo' => '',
-            'permission' => json_encode($request->permission),
-            'status' => $request->has('status')? 1 : 0,
-        ]);
+        $admin = new Admin();
+        if ($request->permission) {
+            $admin->permission = implode(',', $request->permission);
+        }
+
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->password = Hash::make($request->password);
+        $admin->status = $request->has('status')? 1 : 0;
+
+        $admin->save();
 
         return redirect()->route('admin.admins')->with(['message' => 'تم الحفظ بنجاح', 'msg-type' => 'success']);
     }
@@ -77,8 +82,18 @@ class AdminsController extends Controller
     public function edit($id)
     {
         $admin = Admin::find($id);
-        dd($admin->permission);
-        return view('backend.admins.edit', compact('admin'));
+
+        $superUser = false;
+        if ($admin->permission != '*') {
+            $admin->permission = explode(',', $admin->permission);
+            if ($admin->permission == null) {
+                $admin->permission = [];
+            }
+        } else {
+            $superUser = true;
+        }
+
+        return view('backend.admins.edit', compact('admin', 'superUser'));
     }
 
     /**
@@ -88,9 +103,19 @@ class AdminsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdminRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        //
+        $admin = Admin::find($id);
+
+        $admin->permission = null;
+
+        if ($request->permission) {
+            $admin->permission = implode(',', $request->permission);
+        }
+
+        $admin->update();
+
+        return redirect()->route('admin.admins')->with(['message' => 'تم التعديل بنجاح', 'msg-type' => 'success']);
     }
 
     public function status($id)
