@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\BreakingNew;
 use App\Models\News;
+use App\Models\Like;
+
 
 class HomeController extends Controller
 {
@@ -30,5 +32,17 @@ class HomeController extends Controller
         $news = News::select()->paginate(PAGINATE_COUNT);
 
         return view('frontend.home', compact('news' ,'breaking_news'));
+    }
+
+    public function read($id)
+    {
+        $breaking_news = BreakingNew::select()->paginate(PAGINATE_COUNT);
+
+        $news = News::find($id);
+
+        $like = Like::where('status', 1)->where('new_id', $id)->count();
+        $dislike = Like::where('status', '!=', 1)->where('new_id', $id)->count();
+
+        return view('frontend.show', compact('news' ,'breaking_news', 'like', 'dislike'));
     }
 }

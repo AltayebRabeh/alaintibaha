@@ -17,7 +17,6 @@ class CommentSeeder extends Seeder
     {
         Comment::create([
             'comment' => $faker->title,
-            'photos' => $faker->title,
             'status' => 1,
             'new_id' => News::find(1)->id,
             'user_id' => User::find(1)->id,

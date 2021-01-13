@@ -55,9 +55,10 @@ Route::group(['middleware'=>'admin'], function() {
     Route::post('/comments/delete/{id}', 'CommentsController@destroy')->name('admin.comments.delete')->middleware('cap');
 
 
-    Route::get('/{profile}', 'ProfileController@show')->name('admin.profile');
+    Route::get('/profile', 'ProfileController@show')->name('admin.profile');
     Route::get('/profile/edit', 'ProfileController@edit')->name('admin.profile.edit');
     Route::post('/profile/update', 'ProfileController@update')->name('admin.profile.update');
+    Route::post('/profile/password', 'ProfileController@password')->name('admin.profile.password');
 
 
     Route::get('/admins/all', 'AdminsController@index')->name('admin.admins')->middleware('cap');
@@ -79,9 +80,6 @@ Route::group(['middleware'=>'admin'], function() {
     Route::get('/poll/enable', 'PollController@enable')->name('admin.poll.enable')->middleware('cap');
     Route::get('/poll/create', 'PollController@create')->name('admin.poll.create')->middleware('cap');
     Route::post('/poll/store', 'PollController@store')->name('admin.poll.store');
-    Route::get('/poll/show/{id}', 'PollController@show')->name('admin.poll.show')->middleware('cap');
-    Route::get('/poll/edit/{id}', 'PollController@edit')->name('admin.poll.edit')->middleware('cap');
-    Route::post('/poll/update/{id}', 'PollController@update')->name('admin.poll.update');
     Route::post('/poll/delete/{id}', 'PollController@destroy')->name('admin.poll.delete')->middleware('cap');
     Route::post('/poll/show-hide/{id}', 'PollController@showOrHide')->name('admin.poll.show_hide')->middleware('cap');
 

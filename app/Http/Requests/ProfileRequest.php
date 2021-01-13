@@ -13,7 +13,7 @@ class ProfileRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,21 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required_without|string|max:255|min:3',
+            'email' => 'required_without|string|email|max:255',
+            'password' => 'required_without|string|min:8|confirmed',
+        ];
+    }
+
+    public function messages() {
+        return [
+            'required' => 'هذا الحقل مطلوب',
+            'string' => 'هذا الحقل يجب ان يكون نص',
+            'email' => 'هذا الحقل يجب ان يكون بريد الكتروني',
+            'unique' => 'هذاء القيمة موجودة مسبقا',
+            'min' => 'هذا الحقل يجب ان لايقل عن :min .',
+            'max' => 'هذا الحقل يجب ان لايزيد عن :max .',
+            'confirmed' => 'كلمات المرور غير متطابقة',
         ];
     }
 }

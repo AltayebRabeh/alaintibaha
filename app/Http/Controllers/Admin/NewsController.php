@@ -82,8 +82,8 @@ class NewsController extends Controller
             return redirect()->route('admin.news')->with(['message' => 'هنالك مشكلة ماء الرجاء المحاولة مرة اخرة', 'msg-type' => 'danger']);
         }
 
-        $like = Like::where('status', 1)->count();
-        $dislike = Like::where('status', '!=', 1)->count();
+        $like = Like::where('status', 1)->where('new_id', $id)->count();
+        $dislike = Like::where('status', '!=', 1)->where('new_id', $id)->count();
 
         return view('backend.news.show', compact('news', 'like', 'dislike'));
     }

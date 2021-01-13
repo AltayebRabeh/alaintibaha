@@ -1,39 +1,54 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="row">
     @forelse($news as $new)
         <!-- Blog Post -->
-        <div class="card mb-4">
-            <div class="slider-container">
-                @foreach (json_decode($new->photos) as $key => $photo)
-                    <div class="mySlides">
-                        <img src="{{ url($photo ) }}" style="height:300px; max-width:100%" class="d-block ml-auto">
+        <div class="col-md-4">
+            <div class="card mb-4 mt-4">
+                <img src="{{url(json_decode($new->photos)[0])}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h2 class="card-title">{{ $new->title }}</h2>
+                <p class="card-text">
+                    {!! substr($new->subject, 0, 90) !!} ...
+                    <a href="{{ route('read', $new->id) }}">قراءة المزيد</a>
+                </p>
+                    {{-- <div class="like ml-4" style="float: left;width: 40px;height: 40px;">
+                        <i class="fas fa-thumbs-up fa-2x d-block"></i>
+                        <span>{{ $like }}</span>
                     </div>
-                @endforeach
-
-                <a class="prev" onclick="plusSlides(-1)">❮</a>
-                <a class="next" onclick="plusSlides(1)">❯</a>
-
-                
-                {{-- <div class="row">
-                    @foreach (json_decode($news->photos) as $key => $photo)
-                        <div class="column">
-                            <img class="demo cursor" src="{{ url($photo ) }}" style="width:100%" onclick="currentSlide({{ $key+1 }})" alt="">
-                        </div>
-                    @endforeach
-                </div> --}}
-            </div>
-            <div class="card-body">
-            <h2 class="card-title">{{ $new->title }}</h2>
-            <p class="card-text">{!! $new->subject !!}</p>
-            <a href="#" class="btn btn-primary">قراءة المزيد &rarr;</a>
-            </div>
-            <div class="card-footer text-muted">
-            تم النشر في {{ $new->created_at->diffForHumans() }}
+                    <div class="dislike" style="float: left;width: 40px;height: 40px;">
+                        <i class="fas fa-thumbs-down fa-2x d-block"></i>
+                        <span>{{ $dislike }}</span>
+                    </div> --}}
+                </div>
+                <div class="card-footer text-muted">
+                تم النشر في {{ $new->created_at }}
+                </div>
             </div>
         </div>
     @empty
 
     @endforelse
+    </div>
         {{ $news->links() }}
+@endsection
+
+@section('css')
+<style>
+    .card{
+        max-height:300px
+    }
+    .card img {
+        max-height:100px !important
+    }
+    .card {
+        font-size: 12px;
+    }
+    .card-title {
+        margin-bottom: .75rem;
+        font-size: 13px;
+        font-weight: bold;
+    }
+</style>
 @endsection

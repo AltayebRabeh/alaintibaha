@@ -15,7 +15,7 @@
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/bootstrap-rtl.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="{{ asset('frontend/css/blog-home.css') }}" rel="stylesheet">
@@ -128,7 +128,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+      <p class="m-0 text-center text-white">جميع الحقوق محفوظة &copy; لصحيفة الانتباهة 2021</p>
     </div>
     <!-- /.container -->
   </footer>

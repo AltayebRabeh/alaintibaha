@@ -66,6 +66,12 @@ return [
             'url' => env('APP_URL') . '/public',
             'visibility' => 'public',
         ],
+        'admins_profile' => [
+            'driver' => 'local',
+            'root' => public_path() . '/uploads/images/admins_profile/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

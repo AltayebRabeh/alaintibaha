@@ -6,7 +6,7 @@
         <div class="card col-md-12 text-right">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="form-group mt-4">
                         <img style="width:100px; height:100px; margin:auto" class="d-block img-profile rounded-circle" src="{{ isset($admin->photo) ?  url($admin->photo)  : asset('backend/img/undraw_profile.svg') }}"
                     </div>
                     <br><br>

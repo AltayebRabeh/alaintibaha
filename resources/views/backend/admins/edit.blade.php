@@ -74,8 +74,6 @@
                                 <option {{ array_search('/poll/all', $admin->permission) ? 'selected' : '' }}  value="/poll">عرض الاستطلاعات</option>
                                 <option {{ array_search('/poll/enable', $admin->permission) ? 'selected' : '' }}  value="/poll/enable">عرض الاستطلاعات المفعلة</option>
                                 <option {{ array_search('/poll/create', $admin->permission) ? 'selected' : '' }}  value="/poll/create">إضافة إستطلاع</option>
-                                <option {{ array_search('/poll/show/', $admin->permission) ? 'selected' : '' }}  value="/poll/show/">عرض إستطلاع</option>
-                                <option {{ array_search('/poll/edit/', $admin->permission) ? 'selected' : '' }}  value="/poll/edit/">تعديل إستطلاع</option>
                                 <option {{ array_search('/poll/delete/', $admin->permission) ? 'selected' : '' }}  value="/poll/delete/">حذف إستطلاع</option>
                                 <option {{ array_search('/poll/show-hide/', $admin->permission) ? 'selected' : '' }}  value="/poll/show-hide/">تفعيل إلغاء او إلغاء تفعيل استطلاع</option>
                             </select>

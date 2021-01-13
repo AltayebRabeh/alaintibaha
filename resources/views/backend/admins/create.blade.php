@@ -91,8 +91,6 @@
                                 <option value="/poll/all">عرض الاستطلاعات</option>
                                 <option value="/poll/enable">عرض الاستطلاعات المفعلة</option>
                                 <option value="/poll/create">إضافة إستطلاع</option>
-                                <option value="/poll/show/">عرض إستطلاع</option>
-                                <option value="/poll/edit/">تعديل إستطلاع</option>
                                 <option value="/poll/delete/">حذف إستطلاع</option>
                                 <option value="/poll/show-hide/">تفعيل إلغاء او إلغاء تفعيل استطلاع</option>
                             </select>

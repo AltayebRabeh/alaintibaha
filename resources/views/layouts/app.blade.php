@@ -16,11 +16,12 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('frontend/css/fontawesome.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/slider.css') }}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="{{ asset('frontend/css/blog-home.css') }}" rel="stylesheet">
-
+  @yield('css')
   <style>
         @import url('https://fonts.googleapis.com/css2?family=Almarai&family=Cairo:wght@200;300;400;600;700;900&display=swap');
         * {
@@ -185,7 +186,7 @@
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+      <p class="m-0 text-center text-white">جميع الحقوق محفوظة &copy; لصحيفة الانتباهة 2021</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -193,6 +194,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
   <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('frontend/js/fontawesome.min.js') }}"></script>
 
   <script src="{{ asset('js/slider.js') }}" defer></script>
   <script src="{{ asset('js/app.js') }}" defer></script>

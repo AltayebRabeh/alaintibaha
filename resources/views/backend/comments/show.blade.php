@@ -5,7 +5,7 @@
     <div class="row">
         <div class="card col-md-12">
             <div class="slider-container">
-                @foreach (json_decode($comments->photos) as $key => $photo)
+                @foreach (json_decode($comments->news->photos) as $key => $photo)
                     <div class="mySlides">
                         <img src="{{ url($photo ) }}" style="height:300px; max-width:100%" class="d-block ml-auto">
                     </div>
