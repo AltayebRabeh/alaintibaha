@@ -5,7 +5,7 @@
     @forelse($news as $new)
         <!-- Blog Post -->
         <div class="col-md-4">
-            <div class="card mb-4 mt-4">
+            <div class="card new mb-4 mt-4">
                 <img src="{{url(json_decode($new->photos)[0])}}" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h2 class="card-title">{{ $new->title }}</h2>
@@ -36,13 +36,13 @@
 
 @section('css')
 <style>
-    .card{
-        max-height:300px
+    .new{
+        height:350px
     }
-    .card img {
+    .new img {
         max-height:100px !important
     }
-    .card {
+    .new {
         font-size: 12px;
     }
     .card-title {

@@ -16,7 +16,7 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('frontend/css/fontawesome.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('frontend/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
   <link href="{{ asset('css/slider.css') }}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
@@ -51,15 +51,15 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">اخر الاخبار
-              <span class="sr-only">(current)</span>
+            <a class="nav-link" href="{{ url('/') }}">اخر الاخبار
+              <span class="sr-only"></span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">الاكثر مشاهدة</a>
+            <a class="nav-link" href="{{ url('/home') }}">الاكثر مشاهدة</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">تواصل معنا</a>
+            <a class="nav-link" href="{{ url('/home') }}">شاركنا بارائك</a>
           </li>
         </ul>
         <!-- Right Side Of Navbar -->
@@ -75,34 +75,48 @@
                     </li>
                 @endif
             @else
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }}
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                    <img class="img-profile rounded-circle" style="width:50px; hieght:50px"
+                        src="{{ Auth::user()->photo ? url(Auth::user()->photo) : asset('backend/img/undraw_profile.svg') }}">
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                    aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="{{ route('profile') }}">
+                        <i class="text-gray-400"></i>
+                        الملف الشخصي
                     </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}"
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                             تسجيل خروج
-                        </a>
+                    </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+
+                </div>
+            </li>
             @endguest
         </ul>
       </div>
     </div>
   </nav>
-  <marquee style="background-color: #343a4026;height: 35px;font-size: 20px;color: #343a40;margin-top: 27px;">
-      @foreach ($breaking_news as $news)
-        {{$news->news->title}}
+  <marquee direction="right" style="border-top: 2px solid #fff;
+                                    background-color: #343a40;
+                                    height: 35px;
+                                    font-size: 20px;
+                                    color: #ffffff;
+                                    margin-top: 27px;">
+      @foreach (App\Http\Controllers\Web\HomeController::breakingNews() as $news)
+      <a style="text-decoration: none;color: #ccc;" href="{{ route('read', $news->id) }}">{{ $news->title }}</a> <i class="fa fa-car"> </i>
       @endforeach
   </marquee>
-
   <!-- Page Content -->
   <div class="container">
 
@@ -123,12 +137,17 @@
         <div class="card my-4">
           <h5 class="card-header">البحث</h5>
           <div class="card-body">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="ابحث عن ...">
-              <span class="input-group-append">
-                <button class="btn btn-secondary" type="button">بحث!</button>
-              </span>
-            </div>
+              <form action="{{ route('search') }}" method="GET">
+              @csrf
+                  <div class="input-group">
+
+                    <input name="search" type="text" class="form-control" placeholder="ابحث عن ...">
+                    <span class="input-group-append">
+                        <input type="submit" class="btn btn-secondary" type="submit" value="بحث!"></input>
+                    </span>
+                  </div>
+
+              </form>
           </div>
         </div>
 
@@ -139,29 +158,19 @@
             <div class="row">
               <div class="col-lg-6">
                 <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">Web Design</a>
-                  </li>
-                  <li>
-                    <a href="#">HTML</a>
-                  </li>
-                  <li>
-                    <a href="#">Freebies</a>
-                  </li>
+                @foreach (App\Http\Controllers\Web\HomeController::bestNews() as $key => $new)
+                    @if($key == 3)
+                      </ul>
+                      <ul class="list-unstyled mb-0">
+                    @endif
+                    <li>
+                      <a href="{{ route('read', $new->id) }}">{{ substr($new->title, 0, 10) }}</a>
+                    </li>
+                @endforeach
+
                 </ul>
               </div>
               <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">JavaScript</a>
-                  </li>
-                  <li>
-                    <a href="#">CSS</a>
-                  </li>
-                  <li>
-                    <a href="#">Tutorials</a>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
@@ -169,10 +178,14 @@
 
         <!-- Side Widget -->
         <div class="card my-4">
-          <h5 class="card-header">Side Widget</h5>
+          <h5 class="card-header">الاعلانات</h5>
           <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-          </div>
+              @if(App\Http\Controllers\Web\HomeController::ads())
+            <span class="h6"><b>{{ App\Http\Controllers\Web\HomeController::ads()->title }}</b></span>
+            <p class="h6">{!! App\Http\Controllers\Web\HomeController::ads()->subject !!}</p>
+            <img src="{{ url(json_decode(App\Http\Controllers\Web\HomeController::ads()->photos)[0]) }}" style="height:300px; max-width:100%" class="d-block ml-auto">
+            @endif
+        </div>
         </div>
 
       </div>
@@ -192,13 +205,15 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
+  <script src="{{ asset('js/app.js') }}" defer></script>
   <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
   <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('frontend/js/fontawesome.min.js') }}"></script>
+
 
   <script src="{{ asset('js/slider.js') }}" defer></script>
   <script src="{{ asset('js/app.js') }}" defer></script>
 
+  @yield('js')
 
 </body>
 

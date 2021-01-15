@@ -20,9 +20,9 @@ class News extends Model
         return $this->hasOne(BreakingNew::class, 'new_id');
     }
     public function comment() {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, 'new_id');
     }
     public function like() {
-        return $this->hasMany(Like::class);
+        return $this->hasMany(Like::class, 'new_id');
     }
 }

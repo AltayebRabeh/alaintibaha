@@ -50,6 +50,7 @@ class AdsController extends Controller
                 return redirect()->route('admin.ads')->with(['message' => 'لايمكنك رفع اكثر من ' . MAX_COUNT_FILE_UPLOAD . 'صور', 'msg-type' => 'danger']);
             }
 
+           $data = [];
            foreach($request->file('photos') as $photo)
            {
                $filePath = uploadImage('ads', $photo);
